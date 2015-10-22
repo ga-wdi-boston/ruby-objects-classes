@@ -1,52 +1,26 @@
 ![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)
 
-# Ruby Class Demo
+# Ruby: Modeling with Classes
 
 ## Objectives
 
 By the end of this, students should be able to:
 
-- Explain the purpose of classes vs global methods
-- Write basic classes to solve problems
-- Create instances of classes and call instance methods on them
-- Explain the difference between instance and local variables
-- Explain and utilize inheritance
-- Test classes and their methods with RSpec
+- Write basic classes to solve problems.
+- Recall the benefits of inheritance.
+- Write classes that inherit from other classes.
 
-## Demo
-
-### Objects
-
-Object are really just "things". Lets list some objects.
-
-* Pearl Jam's 'Jeremy'.
-* My Spotify playlist.
-* Tesla Roadster
-* David Fisher
-* 'Stranger in a Strange Land'
-* 42.
-* $100 bill
-
-Look around the room and find me about some objects.
-
-In programming we represent objects, that may or may not, live in the
-real world in a couple of different ways.
-
-
-### Classes
+## `class`ifying Objects
 
 Objects, or things, can be classified. For example:
 
-* Pearl Jam's 'Jeremy'. Is "classified" as a __Song__.
-* My Spotify playlist. Is a __Playlist__.
-* Tesla Roadster. Is a __Car__.
-* David Fisher. Is a __Person__.
-* 'Stranger in a Strange Land'. Is a __Book__.
-* 42. Is an Integer, aka __Fixnum__ in Ruby.
-* $100 bill is __Money__
-
-We "classify" objects in OOP by using a Class. So, Song, Playlist, Car,
-Person, Book and Integer are all Classes.
+- Pearl Jam's 'Jeremy'. Is "classified" as a __Song__.
+- My Spotify playlist. Is a __Playlist__.
+- Tesla Roadster. Is a __Car__.
+- David Fisher. Is a __Person__.
+- 'Stranger in a Strange Land'. Is a __Book__.
+- 42. Is an Integer, aka __Fixnum__ in Ruby.
+- $100 bill is __Money__
 
 In Ruby, (almost) everything is an *object*. For example, *instances* of the following are objects:
 
@@ -71,21 +45,7 @@ In Ruby, (almost) everything is an *object*. For example, *instances* of the fol
 | stored in a variable             | ✓      |       |
 | Defined in *CamelCase*           |        | ✓     |
 
-#### Creating Instances of Classes
-
-You create instances of classes by using the `new` method on a class. For example, below we create a new empty array:
-
-```ruby
-an_array = Array.new
-```
-
-##### Your Turn
-
-In `class_instances.rb` create 3 additional instances of different types of classes using the `new` method and store them as local variables.
-
-Run the file with `ruby class_instances.rb`, and using *pry* try to see that you've created these.
-
-### Making new Classes
+## Demo: Modeling Familiar Concepts
 
 We define a class with the `class` keyword, and then the name of the class you'd like to create in CamelCase. We finish with an `end` keyword to denote that we're done defining the class.
 
@@ -202,31 +162,48 @@ a_rectangle = Rectangle.new(10, 20)
 @length #=> nil
 ```
 
-#### Testing Classes and Objects
+## Inheritance
 
-Ideally, we should be testing our work, and writing test first.
+Some objects can be classified in multiple ways. These multiple classifications often make sense as a hierarchy. For example, a `Dog` is a kind of `Pet`. It's also a kind of `Animal`. In ruby, we can share code (data or behavior) between two classes using **inheritance**. Let's look at an example of inheritance. Note that a ruby class can only inherit from one other class, so whether you name that class `Pet` or `Animal` will depend on your application.
 
-Reference the `spec/rectangle_spec.rb` which you can run with `spec/rectangle_spec.rb`. Note that there are two failing tests for the methods `perimeter` and `square?`.
+```ruby
+class Animal
+  def eat
+    puts "Nom nom nom"
+  end
+end
 
-In `lib/rectangle.rb` implement the code needed to make all test for Rectangle pass.
+class Dog < Animal
+end
 
-### Mini-lab: More Geometry!
+dog = Dog.new
+dog.eat #=> "Nom nom nom"
 
-In the `spec` directory you'll find two other sets of test `circle_spec.rb` and `sphere_spec.rb`.
+class Dog < Animal
+  def speak
+    puts "WOOF"
+  end
 
-For `circle_spec.rb` you'll need to write code in `lib/circle.rb` to make the tests pass.
+  def eat
+    puts "Slop slop slop"
+  end
+end
 
-For `sphere_spec.rb` you need to write the tests for several methods (listed below and in the comments), and *also* write the code in `lib/sphere.rb` to make the tests pass.
+dog.speak #=> "WOOF"
+dog.eat #=> "Slop slop slop"
 
+animal = Animal.new
+animal.eat #=> "Nom nom nom"
+animal.speak #=> NoMethodError
+```
 
-## Additional Resources
+## Lab: Model Shapes Using Classes
+
+A square is a special kind of rectangle. Create a `Square` class that inherits from `Rectangle` and override any methods you need to change to represent the idea of a `Square` in ruby code.
+
 ---
 
-List additional related resources such as videos, blog posts and official documentation.
 [License](LICENSE)
 ------------------
 
-- Item 1
-- Item 2
-- Item 3
 Source code distributed under the MIT license. Text and other assets copyright General Assembly, Inc., all rights reserved.
