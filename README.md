@@ -220,9 +220,13 @@ For `sphere_spec.rb` you need to write the tests for several methods (listed bel
 
 
 ## Additional Resources
+---
 
 List additional related resources such as videos, blog posts and official documentation.
+[License](LICENSE)
+------------------
 
 - Item 1
 - Item 2
 - Item 3
+Source code distributed under the MIT license. Text and other assets copyright General Assembly, Inc., all rights reserved.
